@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soil Moisturizer Value</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      color: #333;
+      font-family: 'Poppins', sans-serif;
+    }
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .circle {
+      width: 200px;
+      height: 200px;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      }
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      }
+    }
+    #moisturizer-value {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+    .warning {
+      color: red;
+      font-size: 1rem;
+      font-weight: bold;
+      margin-top: 10px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .warning.show {
+      opacity: 1;
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    .btn-custom {
+      margin: 0 5px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+    .btn-custom:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <h4 class="text-warning">Status: <span class="text-success">active</span></h4>
+  <h3>Your Soil Moisturizer Value</h3>
+  <div class="circle">
+    <p id="moisturizer-value">45</p>
+  </div>
+  <p id="warning-note" class="warning">Warning: Moisturizer value is too low!</p>
+  <div class="buttons">
+    <button id="ignore-btn" class="btn btn-secondary btn-custom">Ignore</button>
+    <button id="got-it-btn" class="btn btn-primary btn-custom">Got it</button>
+  </div>
+
+  <!-- Bootstrap JS and Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const moisturizerValueEl = document.getElementById('moisturizer-value');
+    const warningNoteEl = document.getElementById('warning-note');
+    const ignoreBtn = document.getElementById('ignore-btn');
+    const gotItBtn = document.getElementById('got-it-btn');
+
+    function updateMoisturizerValue() {
+      // Generate random value between 25-45
+      const randomValue = Math.floor(Math.random() * (45 - 25 + 1)) + 25;
+      moisturizerValueEl.textContent = randomValue;
+
+      // Change color dynamically and show warning if value < 30
+      if (randomValue < 30) {
+        moisturizerValueEl.style.color = 'red';
+        warningNoteEl.classList.add('show');
+      } else {
+        moisturizerValueEl.style.color = '#333';
+        warningNoteEl.classList.remove('show');
+      }
+    }
+
+    // Update the value every second
+    setInterval(updateMoisturizerValue, 10000);
+
+    // Hide warning on Ignore button click
+    ignoreBtn.addEventListener('click', () => {
+      warningNoteEl.classList.remove('show');
+    });
+
+    // Got it button action
+    gotItBtn.addEventListener('click', () => {
+      alert('You acknowledged the warning!');
+    });
+  </script>
+</body>
+</html>
