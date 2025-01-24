@@ -85,7 +85,7 @@
   <div class="circle">
     <p id="moisturizer-value">45</p>
   </div>
-  <p id="warning-note" class="warning">Warning: Moisturizer value is too low!</p>
+  <p id="warning-note" class="warning">Warning: Moisturizer value is too low! Please Start motor</p>
   <div class="buttons">
     <button id="ignore-btn" class="btn btn-secondary btn-custom">Ignore</button>
     <button id="got-it-btn" class="btn btn-primary btn-custom">Got it</button>
@@ -101,7 +101,7 @@
 
     function updateMoisturizerValue() {
       // Generate random value between 25-45
-      const randomValue = Math.floor(Math.random() * (45 - 25 + 1)) + 25;
+      const randomValue = 27;
       moisturizerValueEl.textContent = randomValue;
 
       // Change color dynamically and show warning if value < 30
@@ -115,7 +115,7 @@
     }
 
     // Update the value every second
-    setInterval(updateMoisturizerValue, 10000);
+   // setInterval(updateMoisturizerValue, 10000);
 
     // Hide warning on Ignore button click
     ignoreBtn.addEventListener('click', () => {
